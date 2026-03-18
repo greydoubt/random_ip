@@ -4,6 +4,12 @@ npm install js-yaml
 
 node validator.js topology.yaml
 
+
+
+<img width="363" height="1058" alt="Screenshot 2026-03-17 at 21 31 07" src="https://github.com/user-attachments/assets/acb22dc8-cfee-4fa4-92cd-c3fabfeb6839" />
+
+
+
 [firewall]
 default_policy = "allow"
 
