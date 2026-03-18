@@ -1,5 +1,10 @@
 # random_ip
 
+<img width="818" height="290" alt="Screenshot 2026-03-17 at 22 03 37" src="https://github.com/user-attachments/assets/f772d46e-c9a8-4b92-9752-d48d2d1b5a10" />
+
+
+
+# installation
 npm install js-yaml
 
 node validator.js topology.yaml
