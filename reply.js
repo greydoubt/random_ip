@@ -26,3 +26,4 @@ const myModule = (function () {
 })();
 
 console.log(myModule.getPreviousPart());
+
