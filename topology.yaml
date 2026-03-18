@@ -1,0 +1,102 @@
+id: root
+type: network
+description: "Local firewalled network topology"
+
+children:
+
+  - id: firewall
+    type: service
+    description: "Core firewall controlling ingress/egress"
+    rules:
+      - id: block-external-bad
+        action: block
+        sources:
+          - 103.28.54.184
+          - 108.34.182.56
+          - 147.124.120.245
+          - 170.249.107.209
+          - 95.161.76.100
+
+      - id: allow-dns
+        action: allow
+        destinations:
+          - 1.1.1.1
+          - 1.0.0.1
+          - 8.8.8.8
+          - 8.8.4.4
+
+  - id: private-lan
+    type: network
+    cidr: 192.168.1.0/24
+    description: "Trusted internal network"
+
+    children:
+      - id: gateway
+        type: host
+        description: "Router / firewall gateway"
+        ip: 192.168.1.1
+
+      - id: workstation-1
+        type: host
+        ip: 192.168.1.162
+
+      - id: workstation-2
+        type: host
+        ip: 192.168.1.197
+
+  - id: dns-resolvers
+    type: service
+    description: "Allowed DNS providers"
+
+    children:
+      - { id: "1.1.1.1", type: ip }
+      - { id: "1.0.0.1", type: ip }
+      - { id: "8.8.8.8", type: ip }
+      - { id: "8.8.4.4", type: ip }
+
+  - id: external
+    type: network
+    description: "Untrusted external network (processed by FFT)"
+
+    children:
+      # Known bad / blocked
+      - { id: "103.28.54.184", type: host }
+      - { id: "108.34.182.56", type: host }
+      - { id: "147.124.120.245", type: host }
+      - { id: "170.249.107.209", type: host }
+      - { id: "95.161.76.100", type: host }
+
+      # Mixed / unknown
+      - { id: "23.212.73.32", type: host }
+      - { id: "173.231.80.185", type: host }
+      - { id: "184.28.98.95", type: host }
+
+      # Service cluster (nested recursion)
+      - id: telegram-network
+        type: service
+        children:
+          - { id: "149.154.167.50", type: host }
+          - { id: "149.154.167.91", type: host }
+          - { id: "149.154.175.50", type: host }
+
+  - id: ipv6
+    type: network
+    description: "IPv6 segment"
+
+    children:
+      - { id: "2001:1998:f00:1::1", type: ip }
+      - { id: "2001:1998:f00:2::1", type: ip }
+      - { id: "2605:e000:1418:40ba:d6f9:5ebc:f09c:b7a3", type: ip }
+
+references:
+  - from: private-lan
+    to: firewall
+    relationship: "protected-by"
+
+  - from: private-lan
+    to: dns-resolvers
+    relationship: "uses"
+
+  - from: external
+    to: firewall
+    relationship: "filtered-by"
