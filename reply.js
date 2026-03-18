@@ -1,6 +1,7 @@
 // INIT DB
 import schema from "./scheme/schema.json"
 import table from "./scheme/types.json"
+import * from "./NS_App.js"
 import * from "./workers.js"
 
 import { validateSchema } from "./scheme/types.ts"
