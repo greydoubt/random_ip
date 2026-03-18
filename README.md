@@ -44,6 +44,10 @@ addresses = [
   "fe80::1eb0:44ff:fedf:fe0a"
 ]
 
+# Memory Pressure
+<img width="1754" height="298" alt="Screenshot 2026-03-17 at 21 34 37" src="https://github.com/user-attachments/assets/0acef081-ca52-46da-8cf3-fd0bd3b28f78" />
+
+
 # Rules
 [[firewall.rules]]
 action = "block"
