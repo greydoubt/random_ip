@@ -1,1 +1,14 @@
+nodes:
+  - id: net-A
+    type: network
+    children: [net-B, host-1]
 
+  - id: net-B
+    type: network
+    children: [net-A, host-2]  # recursive reference
+
+  - id: host-1
+    type: device
+
+  - id: host-2
+    type: device
