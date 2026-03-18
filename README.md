@@ -64,11 +64,20 @@ source = "firewall.blocklist.ipv6.addresses"
 description = "Block listed IPv6 addresses"
 
 # Debugging in The Terminal
+
 [[set@nakamoto SHANNON % ping 192.168.1.162]]
+
 PING 192.168.1.162 (192.168.1.162): 56 data bytes
+
 Request timeout for icmp_seq 0
+
 Request timeout for icmp_seq 1
+
 Request timeout for icmp_seq 2
+
 ^X^C
---- 192.168.1.162 ping statistics ---
+
+
+[[--- 192.168.1.162 ping statistics ---]]
+
 4 packets transmitted, 0 packets received, 100.0% packet loss
