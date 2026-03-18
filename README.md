@@ -1,5 +1,8 @@
 # random_ip
 
+npm install js-yaml
+
+node validator.js topology.yaml
 
 [firewall]
 default_policy = "allow"
